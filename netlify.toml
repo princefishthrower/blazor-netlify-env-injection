@@ -1,0 +1,6 @@
+[dev]
+  command = "dotnet watch"
+[build]
+  command = "./update-config.sh && dotnet publish -c Release -o release"
+[publish]
+  directory = "release/wwwroot"

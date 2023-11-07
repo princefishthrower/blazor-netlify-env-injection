@@ -1,0 +1,18 @@
+@page "/appconfig"
+
+@inject IJSRuntime JSRuntime
+
+<h3>App Configuration</h3>
+<p>Test Environment Variable: @_testEnvironmentVariable</p>
+
+@code {
+    private string? _testEnvironmentVariable;
+    protected override async Task OnInitializedAsync()
+    {
+        var testEnvironmentVariable = await JSRuntime.InvokeAsync<string>("eval", "window.config.testEnvironmentVariable");
+        if (testEnvironmentVariable != null)
+        {
+            _testEnvironmentVariable = testEnvironmentVariable;
+        }
+    }
+}
